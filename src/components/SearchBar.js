@@ -12,7 +12,7 @@ class SearchBar extends React.Component {
         event.preventDefault();
 
         this.props.pokemonSubmit(this.state.term)
-        //closes keyboard on mobile
+
         this.inputFocusRef.current.blur()
     }
 
