@@ -1,0 +1,64 @@
+#information {
+  background-color: #eee;
+  transition: visibility 300ms ease, opacity 300ms ease;
+}
+
+.bar {
+  width: 100%;
+  background-color: var(--pokedex-red);
+  color: #fff;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bar h3 {
+  margin: 0;
+}
+
+hr {
+  border: 2px solid #222;
+  margin: 16px 0;
+}
+
+.pokemon-title {
+  display: flex;
+  justify-content: space-between;
+  text-transform: capitalize;
+}
+
+.type-container {
+  text-transform: capitalize;
+  color: #fff;
+  display: flex;
+}
+
+.type-container span,
+.top-bar {
+  padding: 4px 8px;
+  margin-right: 8px;
+}
+
+.close-btn {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: inherit;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.close-btn:focus {
+  outline: none;
+  border: none;
+}
+
+.hide {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.show {
+  visibility: visible;
+  opacity: 1;
+}

@@ -1,0 +1,8 @@
+.stat-container {
+    text-transform: capitalize;
+}
+
+.stat-container div {
+    position: absolute;
+    margin: 1rem;
+}
