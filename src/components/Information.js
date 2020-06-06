@@ -9,7 +9,9 @@ import Description from "./Description"
 class Information extends React.Component {
 
     componentDidMount() {
-        this.swiper = new Swiper(".swiper-container")
+        this.swiper = new Swiper(".swiper-container", {
+            effect: 'flip'
+        })
     }
 
     render() {
@@ -41,7 +43,17 @@ class Information extends React.Component {
                         />
                     </div>
                     <div className="nes-container information-card swiper-slide">
-                        <p>Hello mum</p>
+                        <div className="bar">
+                            <h3>Profile</h3>
+                        </div>
+                        <ul className="profile">
+                            <li>Height:<span>{this.props.height}</span></li>
+                            <li>Weight:<span>{this.props.weight}</span></li>
+                            <li>Colour:<span>{this.props.colour}</span></li>
+                            <li>Shape:<span>{this.props.shape}</span></li>
+                            <li>Growth rate:<span>{this.props.growth}</span></li>
+                            <li>Habitat:<span>{this.props.habitat}</span></li>
+                        </ul>
                     </div>
                 </div>
             </div>

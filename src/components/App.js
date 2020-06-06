@@ -11,6 +11,8 @@ const configOptions = {
 
 class App extends React.Component {
   state = {
+    fetched: false,
+    isError: false,
     pokemon: [],
     name: "",
     id: null,
@@ -20,9 +22,13 @@ class App extends React.Component {
     genera: "",
     description: "",
     term: "",
-    fetched: false,
-    showInformationPanel: false,
-    isError: false
+    height: "",
+    weight: "",
+    colour: "",
+    shape: "",
+    growth: "",
+    habitat: "",
+    abilities: []
   }
 
   async componentDidMount() {
@@ -55,18 +61,31 @@ class App extends React.Component {
       const pokedexEntryResponse = await pokeapi.get(`/pokemon-species/${term.toLowerCase()}/`)
 
       if (pokemonEntryResponse.status === 200 && pokedexEntryResponse.status === 200) {
-        const typeArr = [];
-        pokemonEntryResponse.data.types.forEach(el => typeArr.push(el.type.name))
+        const types = [];
+        pokemonEntryResponse.data.types.forEach(type => types.push(type.type.name))
+
+        const abilities = [];
+        pokemonEntryResponse.data.abilities.forEach(ability => abilities.push(ability.ability.name))
+
+        //temp
+        console.log(pokedexEntryResponse)
 
         this.setState({
+          fetched: true,
           image: pokemonEntryResponse.data.sprites.front_default,
           name: pokemonEntryResponse.data.name,
           id: pokemonEntryResponse.data.id,
-          types: typeArr,
+          types: types,
           stats: pokemonEntryResponse.data.stats,
           genera: pokedexEntryResponse.data.genera[this.engLangIndex(pokedexEntryResponse.data.genera)].genus,
           description: pokedexEntryResponse.data.flavor_text_entries[this.engLangIndex(pokedexEntryResponse.data.flavor_text_entries)].flavor_text.replace("", " "),
-          fetched: true
+          height: `${pokemonEntryResponse.data.height / 10}m`,
+          weight: `${pokemonEntryResponse.data.weight / 10}kg`,
+          colour: pokedexEntryResponse.data.color.name,
+          shape: pokedexEntryResponse.data.shape.name,
+          growth: pokedexEntryResponse.data.growth_rate.name,
+          habitat: pokedexEntryResponse.data.habitat.name,
+          abilities: abilities,
         })
       }
     } catch (e) {
@@ -105,20 +124,26 @@ class App extends React.Component {
             {
               !this.state.isError && this.state.fetched &&
               <Information
-                showInformationPanel={this.state.showInformationPanel}
-                close={this.close}
+                fetched={this.state.fetched}
                 name={this.state.name}
                 id={this.state.id}
+                image={this.state.image}
                 types={this.state.types}
                 stats={this.state.stats}
                 genera={this.state.genera}
                 description={this.state.description}
-                fetched={this.state.fetched}
+                height={this.state.height}
+                weight={this.state.weight}
+                colour={this.state.colour}
+                shape={this.state.shape}
+                growth={this.state.growth}
+                habitat={this.state.habitat}
+                abilities={this.state.abilities}
               />
             }
             {
               this.state.isError &&
-              <div className="nes-container is-rounded" style={{backgroundColor: "#eee"}}>
+              <div className="nes-container is-rounded" style={{ backgroundColor: "#eee" }}>
                 <h1 className="nes-text is-error">Pokemon not found!</h1>
               </div>
             }

@@ -74,3 +74,13 @@ hr {
   visibility: visible;
   opacity: 1;
 }
+
+.profile li {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile span {
+  text-transform: capitalize;
+}
