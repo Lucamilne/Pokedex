@@ -13,8 +13,9 @@
   --pokedex-open-button: #ffd500;
   --pokedex-open-button--hover: #fa0;
   --pokedex-open-button--active: #c60;
-  --pokedex-pad-button--accent: #007fff;
-  --pokedex-pad-button: #59acff;
+  --pokedex-pad-button--accent: #59acff;
+  --pokedex-pad-button: #007fff;
+  --pokedex-pad-button-active: #00ff00;
   --pokedex-shine-reduced: rgba(255, 255, 255, 0.5);
   --pokedex-screen: #262626;
   --pokedex-screen-stroke: #000;
@@ -158,6 +159,13 @@
 }
 .pokedex__pad-button path:nth-of-type(2) {
   fill: var(--pokedex-pad-button--accent);
+}
+.pokedex__pad-button-aux path:nth-of-type(1) {
+  fill: #aaa;
+  stroke: var(--pokedex-grill-stroke);
+}
+.pokedex__pad-button-aux path:nth-of-type(2) {
+  fill: #eee;
 }
 .pokedex__shine {
   fill: var(--pokedex-shine);

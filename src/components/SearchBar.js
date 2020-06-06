@@ -12,7 +12,7 @@ class SearchBar extends React.Component {
         event.preventDefault();
 
         this.props.pokemonSubmit(this.state.term)
-
+        //prevent mobile keyboard from remaining open
         this.inputFocusRef.current.blur()
     }
 
@@ -37,6 +37,3 @@ class SearchBar extends React.Component {
 }
 
 export default SearchBar;
-
-// input.blur() on form submit
-// error handling (.catch())

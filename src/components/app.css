@@ -70,7 +70,7 @@ i {
 }
 
 .section__container:nth-of-type(1) {
-  margin-bottom: 32px;
+  margin-bottom: var(--padding);
 }
 
 .show {
@@ -112,13 +112,11 @@ i {
     grid-template-rows: 1fr;
     gap: var(--padding);
   }
-  .section__container:nth-of-type(1) {
+  #pokedex {
     margin: 0;
-  }
-  .section__container:nth-of-type(1) {
     grid-area: 1 / 1 / 2 / 4;
   }
-  .section__container:nth-of-type(2) {
+  #information {
     grid-area: 1 / 4 / 2 / 6;
   }
 }

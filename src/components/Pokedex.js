@@ -7,7 +7,6 @@ class Pokedex extends React.Component {
     state = { isOpen: true,
     };
 
-
     openPokedex = () => {
         this.setState({ isOpen: true })
     }
@@ -176,10 +175,10 @@ class Pokedex extends React.Component {
                                             <path d="M73.2561 129.8253h7.6729v7.6729h-7.6729z" />
                                         </g>
                                     </g>
-                                    <g className="pokedex__pad-button">
+                                    <g className="pokedex__pad-button-aux">
                                         <path strokeWidth=".4811" strokeLinecap="round" strokeLinejoin="round" d="M50.6342 153.8242h10.5833v10.5833H50.6342z" />
                                         <path d="M52.0894 155.2794h7.673v7.6729h-7.673z" />
-                                        <g className="pokedex__pad-button">
+                                        <g className="pokedex__pad-button-aux">
                                             <path strokeWidth=".4811" strokeLinecap="round" strokeLinejoin="round" d="M61.2176 153.8242h10.5833v10.5833H61.2176z" />
                                             <path d="M62.6728 155.2794h7.6729v7.6729h-7.673z" />
                                         </g>

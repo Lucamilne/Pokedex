@@ -1,3 +1,4 @@
+import "swiper/css/swiper.min.css"
 import "./app.css"
 import React from 'react';
 import Pokedex from "./Pokedex"
@@ -20,7 +21,8 @@ class App extends React.Component {
     description: "",
     term: "",
     fetched: false,
-    showInformationPanel: false
+    showInformationPanel: false,
+    isError: false
   }
 
   async componentDidMount() {
@@ -47,22 +49,29 @@ class App extends React.Component {
   //solving the language filter - log it.
 
   onSearchSubmit = async (term) => {
-    const pokemonEntry = await pokeapi.get(`/pokemon/${term.toLowerCase()}/`)
-    const pokedexEntry = await pokeapi.get(`/pokemon-species/${term.toLowerCase()}/`)
+    try {
+      this.setState({ isError: false })
+      const pokemonEntryResponse = await pokeapi.get(`/pokemon/${term.toLowerCase()}/`)
+      const pokedexEntryResponse = await pokeapi.get(`/pokemon-species/${term.toLowerCase()}/`)
 
-    const typeArr = [];
-    pokemonEntry.data.types.forEach(el => typeArr.push(el.type.name))
+      if (pokemonEntryResponse.status === 200 && pokedexEntryResponse.status === 200) {
+        const typeArr = [];
+        pokemonEntryResponse.data.types.forEach(el => typeArr.push(el.type.name))
 
-    this.setState({
-      image: pokemonEntry.data.sprites.front_default,
-      name: pokemonEntry.data.name,
-      id: pokemonEntry.data.id,
-      types: typeArr,
-      stats: pokemonEntry.data.stats,
-      genera: pokedexEntry.data.genera[this.engLangIndex(pokedexEntry.data.genera)].genus,
-      description: pokedexEntry.data.flavor_text_entries[this.engLangIndex(pokedexEntry.data.flavor_text_entries)].flavor_text.replace("", " "),
-      fetched: true
-    })
+        this.setState({
+          image: pokemonEntryResponse.data.sprites.front_default,
+          name: pokemonEntryResponse.data.name,
+          id: pokemonEntryResponse.data.id,
+          types: typeArr,
+          stats: pokemonEntryResponse.data.stats,
+          genera: pokedexEntryResponse.data.genera[this.engLangIndex(pokedexEntryResponse.data.genera)].genus,
+          description: pokedexEntryResponse.data.flavor_text_entries[this.engLangIndex(pokedexEntryResponse.data.flavor_text_entries)].flavor_text.replace("", " "),
+          fetched: true
+        })
+      }
+    } catch (e) {
+      this.setState({ isError: true })
+    }
   }
 
   submitRandomPokemon = () => {
@@ -84,7 +93,7 @@ class App extends React.Component {
           ></i>
         </header>
         <main id="app__container">
-          <section className="section__container">
+          <section className="section__container" id="pokedex">
             <Pokedex
               fetched={this.state.fetched}
               query={this.onSearchSubmit}
@@ -92,20 +101,31 @@ class App extends React.Component {
               pokemon={this.state.pokemon}
             />
           </section>
-          <section className="section__container">
-            <Information
-              showInformationPanel={this.state.showInformationPanel}
-              close={this.close}
-              name={this.state.name}
-              id={this.state.id}
-              types={this.state.types}
-              stats={this.state.stats}
-              genera={this.state.genera}
-              description={this.state.description}
-            />
+          <section className="section__container" id="information">
+            {
+              !this.state.isError && this.state.fetched &&
+              <Information
+                showInformationPanel={this.state.showInformationPanel}
+                close={this.close}
+                name={this.state.name}
+                id={this.state.id}
+                types={this.state.types}
+                stats={this.state.stats}
+                genera={this.state.genera}
+                description={this.state.description}
+                fetched={this.state.fetched}
+              />
+            }
+            {
+              this.state.isError &&
+              <div className="nes-container is-rounded" style={{backgroundColor: "#eee"}}>
+                <h1 className="nes-text is-error">Pokemon not found!</h1>
+              </div>
+            }
           </section>
         </main>
         <footer>
+          {/* <h1 title="Pokedex by Jh3y">@Jh3y</h1> */}
           <div className="contact-links">
             <a href="mailto:lucamilne@googlemail.com" title="Email">
               <i className="nes-icon gmail is-medium"></i>
@@ -124,3 +144,8 @@ class App extends React.Component {
 }
 
 export default App;
+
+
+//problem with error handling
+//problem with swiper sizing (rendering component after fetched state)
+//english language translation 
