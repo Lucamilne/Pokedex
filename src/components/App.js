@@ -6,10 +6,6 @@ import pokeapi from "../api/pokeapi";
 import Information from "./Information";
 import Axios from "axios";
 
-const configOptions = {
-  previewPokemon: "pikachu"
-}
-
 class App extends React.Component {
   state = {
     fetched: false,

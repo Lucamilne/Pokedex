@@ -12,7 +12,8 @@ class Information extends React.Component {
 
     componentDidMount() {
         this.swiper = new Swiper(".swiper-container", {
-            effect: 'flip'
+            effect: 'flip',
+            loop: true
         })
     }
 
@@ -48,14 +49,14 @@ class Information extends React.Component {
                         <div className="bar">
                             <h3>Information</h3>
                         </div>
-                        <h3 className="pokemon-title">
+                        {/* <h3 className="pokemon-title">
                             <span>{this.props.name}</span>
                             <span>{`#${this.props.id}`}</span>
                         </h3>
                         <div className="type-container">
                             <TypeList types={this.props.types} />
                         </div>
-                        <hr />                       
+                        <hr /> */}
                         <h3>Profile</h3>
                         <ul className="profile">
                             <li>Height:<span>{this.props.height}</span></li>
@@ -66,8 +67,10 @@ class Information extends React.Component {
                             <li>Habitat:<span>{this.props.habitat}</span></li>
                         </ul>
                         <hr />
-                        <h3>Abilities:</h3>
-                        <Abilities abilities={this.props.abilities}/>
+                        <h3>Abilities</h3>
+                        <div className="ability-container">
+                            <Abilities abilities={this.props.abilities} />
+                        </div>
                     </div>
                 </div>
             </div>

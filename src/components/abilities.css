@@ -1,0 +1,14 @@
+
+.label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #209cee;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+}
+
+.ability p {
+    margin-top: 28px;
+}
