@@ -14,6 +14,7 @@ class SearchBar extends React.Component {
         this.props.pokemonSubmit(this.state.term)
         //prevent mobile keyboard from remaining open
         this.inputFocusRef.current.blur()
+        this.setState({ term: "" })
     }
 
     render() {

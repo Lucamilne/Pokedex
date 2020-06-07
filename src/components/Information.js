@@ -12,8 +12,7 @@ class Information extends React.Component {
 
     componentDidMount() {
         this.swiper = new Swiper(".swiper-container", {
-            effect: 'flip',
-            loop: true
+            effect: 'flip'
         })
     }
 
