@@ -123,7 +123,7 @@ class App extends React.Component {
         })
       }
     } catch (e) {
-      this.setState({ isError: true })
+      this.setState({ isError: true, image: "" })
       console.log(e)
     }
   }
@@ -140,10 +140,14 @@ class App extends React.Component {
       <div className="App">
         <header className="navbar">
           <h1>Pokédex</h1>
-          <i className="nes-pokeball is-small nes-pointer"
-            title="Random Pokémon"
-            onClick={this.submitRandomPokemon}
-          ></i>
+          <div className="random-pokemon">
+            <i className="nes-pokeball is-small nes-pointer"
+              title="Random Pokémon"
+              onClick={this.submitRandomPokemon}
+            ></i>
+            <span role="img" aria-label="Random Pokemon">&#128256;</span>
+          </div>
+
         </header>
         <main id="app__container">
           <section className="section__container" id="pokedex">

@@ -9,13 +9,11 @@
   width: 100%;
   box-sizing: border-box;
 }
-
 .information-card {
   background-color: #eee;
   transition: visibility 300ms ease, opacity 300ms ease;
   font-size: 0.75rem;
 }
-
 .bar {
   width: 100%;
   background-color: var(--pokedex-red);
@@ -23,16 +21,13 @@
   margin-bottom: 0.5rem;
   text-align: center;
 }
-
 .bar h3 {
   margin: 0;
 }
-
 hr {
   border: 2px solid #222;
   margin: 16px 0;
 }
-
 .pokemon-title {
   display: flex;
   justify-content: space-between;
@@ -95,6 +90,6 @@ ul {
 
 @media screen and (min-width: 768px) {
   .information-card {
-      font-size: 1rem;
+    font-size: 1rem;
   }
 }

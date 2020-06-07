@@ -48,14 +48,6 @@ class Information extends React.Component {
                         <div className="bar">
                             <h3>Information</h3>
                         </div>
-                        {/* <h3 className="pokemon-title">
-                            <span>{this.props.name}</span>
-                            <span>{`#${this.props.id}`}</span>
-                        </h3>
-                        <div className="type-container">
-                            <TypeList types={this.props.types} />
-                        </div>
-                        <hr /> */}
                         <h3>Profile</h3>
                         <ul className="profile">
                             <li>Height:<span>{this.props.height}</span></li>

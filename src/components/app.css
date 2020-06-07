@@ -116,7 +116,24 @@ footer h1 {
 h3 {
   text-transform: capitalize;
 }
-i {
+
+.random-pokemon {
+  position: relative;
+}
+
+.random-pokemon span {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  font-size: 1.75rem;
+}
+
+.random-pokemon {
+  transition: transform 150ms ease;
+  transform: scale(0.85);
+}
+
+.random-pokemon:active {
   transform: scale(0.75);
 }
 
@@ -135,15 +152,6 @@ i {
 
 .hide {
   display: none;
-}
-
-.nes-pokeball {
-  transition: transform 1s ease;
-  transform: scale(0.75);
-}
-
-.nes-pokeball:hover {
-  transform: scale(0.85);
 }
 
 .contact-links {
