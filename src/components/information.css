@@ -13,6 +13,7 @@
 .information-card {
   background-color: #eee;
   transition: visibility 300ms ease, opacity 300ms ease;
+  font-size: 0.75rem;
 }
 
 .bar {
@@ -20,8 +21,7 @@
   background-color: var(--pokedex-red);
   color: #fff;
   margin-bottom: 0.5rem;
-  display: flex;
-  justify-content: space-between;
+  text-align: center;
 }
 
 .bar h3 {
@@ -92,7 +92,8 @@ ul {
   font-weight: 400;
 }
 
-/* .ability-container {
-  height: 300px;
-  overflow-y: scroll;
-} */
+@media screen and (min-width: 768px) {
+  .information-card {
+      font-size: 1rem;
+  }
+}
