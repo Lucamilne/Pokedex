@@ -33,7 +33,6 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
-    this.onSearchSubmit(configOptions.previewPokemon)
     //generates a full list of all pokemon available from the api
     const pokemonListResponse = await pokeapi.get(`/pokemon/?limit=251`)
     const pokemon = [];
@@ -41,6 +40,8 @@ class App extends React.Component {
     pokemonListResponse.data.results.forEach(indivualPokemon => pokemon.push(indivualPokemon.name))
 
     this.setState({ pokemon: pokemon })
+
+    this.submitRandomPokemon()
   }
 
   engLangIndex = (arr) => {
