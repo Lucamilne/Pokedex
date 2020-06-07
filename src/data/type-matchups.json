@@ -1,0 +1,373 @@
+{
+    "bug": {
+        "effective": [
+            "dark",
+            "grass",
+            "psychic"
+        ],
+        "resistant": [
+            "fighting",
+            "grass",
+            "ground"
+        ],
+        "uneffective": [
+            "fairy",
+            "fighting",
+            "fire",
+            "flying",
+            "ghost",
+            "poison",
+            "steel"
+        ],
+        "weakness": [
+            "fire",
+            "flying",
+            "rock"
+        ]
+    },
+    "dark": {
+        "effective": [
+            "ghost",
+            "psychic"
+        ],
+        "resistant": [
+            "dark",
+            "ghost"
+        ],
+        "immune": [
+            "psychic"
+        ],
+        "uneffective": [
+            "dark",
+            "fighting",
+            "fairy"
+        ],
+        "weakness": [
+            "bug",
+            "fairy",
+            "fighting"
+        ]
+    },
+    "dragon": {
+        "effective": [
+            "dragon"
+        ],
+        "resistant": [
+            "electric",
+            "fire",
+            "grass",
+            "water"
+        ],
+        "uneffective": [
+            "steel"
+        ],
+        "useless": [
+            "fairy"
+        ],
+        "weakness": [
+            "dragon",
+            "fairy",
+            "ice"
+        ]
+    },
+    "electric": {
+        "effective": [
+            "flying",
+            "water"
+        ],
+        "resistant": [
+            "electric",
+            "flying",
+            "steel"
+        ],
+        "uneffective": [
+            "dragon",
+            "electric",
+            "grass"
+        ],
+        "useless": [
+            "ground"
+        ],
+        "weakness": [
+            "ground"
+        ]
+    },
+    "fairy": {
+        "effective": [
+            "dark",
+            "dragon",
+            "fighting"
+        ],
+        "resistant": [
+            "bug",
+            "dark",
+            "fighting"
+        ],
+        "immune": [
+            "dragon"
+        ],
+        "uneffective": [
+            "fire",
+            "poison",
+            "steel"
+        ],
+        "weakness": [
+            "poison",
+            "steel"
+        ]
+    },
+    "fighting": {
+        "effective": [
+            "dark",
+            "ice",
+            "normal",
+            "rock",
+            "steel"
+        ],
+        "resistant": [
+            "bug",
+            "dark",
+            "rock"
+        ],
+        "uneffective": [
+            "bug",
+            "fairy",
+            "flying",
+            "poison",
+            "psychic"
+        ],
+        "useless": [
+            "ghost"
+        ],
+        "weakness": [
+            "fairy",
+            "flying",
+            "psychic"
+        ]
+    },
+    "fire": {
+        "effective": [
+            "bug",
+            "grass",
+            "ice",
+            "steel"
+        ],
+        "resistant": [
+            "bug",
+            "fairy",
+            "fire",
+            "grass",
+            "ice",
+            "steel"
+        ],
+        "uneffective": [
+            "dragon",
+            "fire",
+            "rock",
+            "water"
+        ],
+        "weakness": [
+            "ground",
+            "rock",
+            "water"
+        ]
+    },
+    "flying": {
+        "effective": [
+            "bug",
+            "fighting",
+            "grass"
+        ],
+        "resistant": [
+            "bug",
+            "fighting",
+            "grass"
+        ],
+        "immune": [
+            "ground"
+        ],
+        "uneffective": [
+            "electric",
+            "rock",
+            "steel"
+        ],
+        "weakness": [
+            "electric",
+            "ice",
+            "rock"
+        ]
+    },
+    "ghost": {
+        "effective": [
+            "ghost",
+            "psychic"
+        ],
+        "resistant": [
+            "bug",
+            "poison"
+        ],
+        "immune": [
+            "normal",
+            "fighting"
+        ],
+        "uneffective": [
+            "dark"
+        ],
+        "useless": [
+            "normal"
+        ],
+        "weakness": [
+            "ghost",
+            "dark"
+        ]
+    },
+    "grass": {
+        "effective": [
+            "ground",
+            "rock",
+            "water"
+        ],
+        "resistant": [
+            "electric",
+            "grass",
+            "ground",
+            "water"
+        ],
+        "uneffective": [
+            "bug",
+            "dragon", 
+            "fire",
+            "flying",
+            "grass",
+            "poison",
+            "steel"
+        ],
+        "weakness": [
+            "bug",
+            "fire",
+            "flying",
+            "ice",
+            "poison"
+        ]
+    },
+    "ground": {
+        "effective": [
+            "electric",
+            "fire",
+            "poison",
+            "rock",
+            "steel"
+        ],
+        "resistant": [
+            "poison",
+            "rock"
+        ],
+        "immune": [
+            "electric"
+        ],
+        "uneffective": [
+            "bug",
+            "grass"
+        ],
+        "useless": [
+            "flying"
+        ],
+        "weakness": [
+            "grass",
+            "ice",
+            "water"
+        ]
+    },
+    "ice": {
+        "effective": [
+            "dragon",
+            "flying",
+            "grass",
+            "ground"
+        ],
+        "resistant": [
+            "ice"
+        ],
+        "uneffective": [
+            "fire",
+            "ice",
+            "steel",
+            "water"
+        ],
+        "weakness": [
+            "fighting",
+            "fire",
+            "rock",
+            "steel"
+        ]
+    },
+    "normal": {
+        "effective": [
+
+        ],
+        "resistant": [
+
+        ],
+        "immune": [
+            "ghost"
+        ],
+        "uneffective": [
+            "rock",
+            "steel"
+        ],
+        "useless": [
+            "ghost"
+        ],
+        "weakness": [
+            "fighting"
+        ]
+    },
+    "poison": {
+        "effective": [
+            "grass",
+            "fairy"
+        ],
+        "resistant": [
+            "bug",
+            "fairy",
+            "fighting",
+            "grass",
+            "poison"
+        ],
+        "uneffective": [
+            "ghost",
+            "ground",
+            "poison",
+            "rock"
+        ],
+        "useless": [
+            "steel"
+        ],
+        "weakness": [
+            "ground",
+            "psychic"
+        ]
+    },
+    "psychic": {
+        "effective": [
+            "fighting",
+            "poison"
+        ],
+        "resistant": [
+            "fighting",
+            "psychic"
+        ],
+        "uneffective": [
+            "psychic",
+            "steel"
+        ],
+        "useless": [
+            "dark"
+        ],
+        "weakness": [
+            "bug",
+            "dark",
+            "ghost"
+        ]
+    }
+}

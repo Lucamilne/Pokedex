@@ -2,9 +2,11 @@ import React from "react";
 import Swiper from "swiper"
 import "./information.css";
 
+
 import TypeList from "./TypeList"
 import Statistics from "./Statistics"
 import Description from "./Description"
+import Abilities from "./Abilities"
 
 class Information extends React.Component {
 
@@ -44,8 +46,17 @@ class Information extends React.Component {
                     </div>
                     <div className="nes-container information-card swiper-slide">
                         <div className="bar">
-                            <h3>Profile</h3>
+                            <h3>Information</h3>
                         </div>
+                        <h3 className="pokemon-title">
+                            <span>{this.props.name}</span>
+                            <span>{`#${this.props.id}`}</span>
+                        </h3>
+                        <div className="type-container">
+                            <TypeList types={this.props.types} />
+                        </div>
+                        <hr />                       
+                        <h3>Profile</h3>
                         <ul className="profile">
                             <li>Height:<span>{this.props.height}</span></li>
                             <li>Weight:<span>{this.props.weight}</span></li>
@@ -54,6 +65,9 @@ class Information extends React.Component {
                             <li>Growth rate:<span>{this.props.growth}</span></li>
                             <li>Habitat:<span>{this.props.habitat}</span></li>
                         </ul>
+                        <hr />
+                        <h3>Abilities:</h3>
+                        <Abilities abilities={this.props.abilities}/>
                     </div>
                 </div>
             </div>

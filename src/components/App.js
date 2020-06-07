@@ -4,6 +4,7 @@ import React from 'react';
 import Pokedex from "./Pokedex"
 import pokeapi from "../api/pokeapi";
 import Information from "./Information";
+import Axios from "axios";
 
 const configOptions = {
   previewPokemon: "pikachu"
@@ -34,10 +35,10 @@ class App extends React.Component {
   async componentDidMount() {
     this.onSearchSubmit(configOptions.previewPokemon)
     //generates a full list of all pokemon available from the api
-    const pokemonListResponse = await pokeapi.get(`/pokemon/?limit=964`)
+    const pokemonListResponse = await pokeapi.get(`/pokemon/?limit=251`)
     const pokemon = [];
 
-    pokemonListResponse.data.results.forEach(entry => pokemon.push(entry.name))
+    pokemonListResponse.data.results.forEach(indivualPokemon => pokemon.push(indivualPokemon.name))
 
     this.setState({ pokemon: pokemon })
   }
@@ -52,44 +53,81 @@ class App extends React.Component {
     }
   }
 
+
+  //not working. Requires serious thinking for eevee and poliwhirl
+  buildEvolutionArray = async (pokedexResponse) => {
+    const response = await Axios.get(pokedexResponse.data.evolution_chain.url)
+    const evolutionChain = response.data.chain
+    const chain = [];
+
+    console.log(evolutionChain)
+
+    chain.push(evolutionChain.species.name)
+
+    if (evolutionChain.hasOwnProperty("evolves_to")) {
+      chain.push(evolutionChain.evolves_to[0].species.name)
+
+      if (evolutionChain.evolves_to.hasOwnProperty("evolves_to")) {
+        chain.push(evolutionChain.evolves_to[0].evolves_to.species.name)
+      }
+    }
+  }
+
+
   //solving the language filter - log it.
 
   onSearchSubmit = async (term) => {
     try {
       this.setState({ isError: false })
-      const pokemonEntryResponse = await pokeapi.get(`/pokemon/${term.toLowerCase()}/`)
-      const pokedexEntryResponse = await pokeapi.get(`/pokemon-species/${term.toLowerCase()}/`)
+      const pokemonResponse = await pokeapi.get(`/pokemon/${term.toLowerCase()}/`)
+      const pokedexResponse = await pokeapi.get(`/pokemon-species/${term.toLowerCase()}/`)
 
-      if (pokemonEntryResponse.status === 200 && pokedexEntryResponse.status === 200) {
+
+      if (pokemonResponse.status === 200 && pokedexResponse.status === 200) {
         const types = [];
-        pokemonEntryResponse.data.types.forEach(type => types.push(type.type.name))
+        pokemonResponse.data.types.forEach(type => types.push(type.type.name))
+
 
         const abilities = [];
-        pokemonEntryResponse.data.abilities.forEach(ability => abilities.push(ability.ability.name))
 
-        //temp
-        console.log(pokedexEntryResponse)
+        //currently get ability effect descriptions asyncronously (not avaliable on the above get request and requested individually)
+        pokemonResponse.data.abilities.forEach(async (ability) => {
+          //get json from api forEach ability listed for pokemon
+          const abilityResponse = await pokeapi.get(`/ability/${ability.ability.name}/`);
+          //access the actual description or effect
+          const effectEntries = abilityResponse.data.effect_entries;
+          //save the eng language entry by looping through until language.name = eng
+          const engEffectEntry = effectEntries[this.engLangIndex(effectEntries)].short_effect
+
+          //push the ability and the effect, as an object, to an array
+          abilities.push({ name: ability.ability.name, effect: engEffectEntry })
+          //this setState is seperate because it must run asynchronously 
+          this.setState({ abilities: abilities })
+        })
+
+        //not all pokemon have a habitat
+        const habitat = pokedexResponse.data.habitat ? pokedexResponse.data.habitat.name : "Unknown"
 
         this.setState({
           fetched: true,
-          image: pokemonEntryResponse.data.sprites.front_default,
-          name: pokemonEntryResponse.data.name,
-          id: pokemonEntryResponse.data.id,
+          image: pokemonResponse.data.sprites.front_default,
+          name: pokemonResponse.data.name,
+          id: pokemonResponse.data.id,
           types: types,
-          stats: pokemonEntryResponse.data.stats,
-          genera: pokedexEntryResponse.data.genera[this.engLangIndex(pokedexEntryResponse.data.genera)].genus,
-          description: pokedexEntryResponse.data.flavor_text_entries[this.engLangIndex(pokedexEntryResponse.data.flavor_text_entries)].flavor_text.replace("", " "),
-          height: `${pokemonEntryResponse.data.height / 10}m`,
-          weight: `${pokemonEntryResponse.data.weight / 10}kg`,
-          colour: pokedexEntryResponse.data.color.name,
-          shape: pokedexEntryResponse.data.shape.name,
-          growth: pokedexEntryResponse.data.growth_rate.name,
-          habitat: pokedexEntryResponse.data.habitat.name,
-          abilities: abilities,
+          stats: pokemonResponse.data.stats,
+          genera: pokedexResponse.data.genera[this.engLangIndex(pokedexResponse.data.genera)].genus,
+          description: pokedexResponse.data.flavor_text_entries[this.engLangIndex(pokedexResponse.data.flavor_text_entries)].flavor_text.replace("", " "),
+          height: `${pokemonResponse.data.height / 10}m`,
+          weight: `${pokemonResponse.data.weight / 10}kg`,
+          colour: pokedexResponse.data.color.name,
+          shape: pokedexResponse.data.shape.name,
+          growth: pokedexResponse.data.growth_rate.name,
+          habitat: habitat
         })
       }
     } catch (e) {
       this.setState({ isError: true })
+      console.log(e)
     }
   }
 
@@ -99,7 +137,6 @@ class App extends React.Component {
 
     this.onSearchSubmit(this.state.pokemon[randomIndex])
   }
-
 
   render() {
     return (
@@ -169,8 +206,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-
-//problem with error handling
-//problem with swiper sizing (rendering component after fetched state)
-//english language translation 

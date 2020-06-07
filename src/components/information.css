@@ -75,12 +75,19 @@ hr {
   opacity: 1;
 }
 
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
 .profile li {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  font-weight: bold;
 }
 
 .profile span {
   text-transform: capitalize;
+  font-weight: 400;
 }
