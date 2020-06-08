@@ -185,6 +185,12 @@ class App extends React.Component {
                 <h1 className="nes-text is-error">Pokemon not found!</h1>
               </div>
             }
+            {
+              !this.state.isError && !this.state.fetched &&
+              <div className="nes-container is-rounded" style={{ backgroundColor: "#eee" }}>
+                <h1 className="nes-text">Loading...</h1>
+              </div>
+            }
           </section>
         </main>
         <footer>
