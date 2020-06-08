@@ -7,10 +7,13 @@
 .swiper-slide {
   height: 100%;
   width: 100%;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .information-card {
   background-color: #eee;
+  -webkit-transition: visibility 300ms ease, opacity 300ms ease;
+  -o-transition: visibility 300ms ease, opacity 300ms ease;
   transition: visibility 300ms ease, opacity 300ms ease;
   font-size: 0.75rem;
 }
@@ -29,14 +32,20 @@ hr {
   margin: 16px 0;
 }
 .pokemon-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   text-transform: capitalize;
 }
 
 .type-container {
   text-transform: capitalize;
   color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -77,8 +86,12 @@ ul {
 
 .profile li {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   font-weight: bold;
 }
 
