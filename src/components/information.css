@@ -11,11 +11,13 @@
           box-sizing: border-box;
 }
 .information-card {
+  position: relative;
   background-color: #eee;
   -webkit-transition: visibility 300ms ease, opacity 300ms ease;
   -o-transition: visibility 300ms ease, opacity 300ms ease;
   transition: visibility 300ms ease, opacity 300ms ease;
   font-size: 0.75rem;
+  height: auto;
 }
 .bar {
   width: 100%;
@@ -38,11 +40,9 @@ hr {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  text-transform: capitalize;
 }
 
 .type-container {
-  text-transform: capitalize;
   color: #fff;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -96,7 +96,6 @@ ul {
 }
 
 .profile span {
-  text-transform: capitalize;
   font-weight: 400;
   direction: rtl;
 }

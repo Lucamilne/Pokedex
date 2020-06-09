@@ -132,7 +132,11 @@ footer h1 {
   color: #fff;
   text-shadow: 4px 0 0 #000, 0 -4px 0 #000, 0 4px 0 #000, -4px 0 0 #000;
 }
-h3 {
+.capitalize, span {
+  text-transform: capitalize;
+}
+
+h1, h2, h3 {
   text-transform: capitalize;
 }
 

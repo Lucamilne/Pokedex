@@ -7,9 +7,9 @@ import TypeList from "./TypeList"
 import Statistics from "./Statistics"
 import Description from "./Description"
 import Abilities from "./Abilities"
+import Evolutions from "./Evolutions"
 
 class Information extends React.Component {
-
     componentDidMount() {
         this.swiper = new Swiper(".swiper-container", {
             effect: 'flip'
@@ -17,7 +17,6 @@ class Information extends React.Component {
     }
 
     render() {
-
         return (
             <div className="swiper-container">
                 <div className="swiper-wrapper">
@@ -29,7 +28,7 @@ class Information extends React.Component {
                             <span>{this.props.name}</span>
                             <span>{`#${this.props.id}`}</span>
                         </h3>
-                        <div className="type-container">
+                        <div className="type-container capitalize">
                             <TypeList types={this.props.types} />
                         </div>
                         <hr />
@@ -61,6 +60,18 @@ class Information extends React.Component {
                         <h3>Abilities</h3>
                         <div className="ability-container">
                             <Abilities abilities={this.props.abilities} />
+                        </div>
+                    </div>
+                    <div className="nes-container information-card swiper-slide">
+                        <div className="bar">
+                            <h3>Information</h3>
+                        </div>
+                        <h3>Evolutions</h3>
+                        <div className="evolution-container">
+                            <Evolutions
+                                evolution_chain={this.props.evolution_chain}
+                                name={this.props.name}
+                            />
                         </div>
                     </div>
                 </div>

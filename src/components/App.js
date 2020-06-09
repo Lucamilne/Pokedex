@@ -7,30 +7,41 @@ import Information from "./Information";
 import Axios from "axios";
 
 class App extends React.Component {
-  state = {
-    fetched: false,
-    isError: false,
-    pokemon: [],
-    name: "",
-    id: null,
-    image: "",
-    types: [],
-    stats: [],
-    genera: "",
-    description: "",
-    term: "",
-    height: "",
-    weight: "",
-    colour: "",
-    shape: "",
-    growth: "",
-    habitat: "",
-    abilities: []
+  state = this.intialState;
+
+  get intialState() {
+    return {
+      fetched: false,
+      isError: false,
+      pokemon: [],
+      name: "",
+      id: null,
+      image: "",
+      types: [],
+      stats: [],
+      genera: "",
+      description: "",
+      term: "",
+      height: "",
+      weight: "",
+      colour: "",
+      shape: "",
+      growth: "",
+      habitat: "",
+      evolution_chain: {},
+      abilities: []
+    }
   }
 
   async componentDidMount() {
+    let gen = {
+      I: 151,
+      II: 251,
+      III: 386
+    }
+
     //generates a full list of all pokemon available from the api
-    const pokemonListResponse = await pokeapi.get(`/pokemon/?limit=251`)
+    const pokemonListResponse = await pokeapi.get(`/pokemon/?limit=${gen.II}`)
     const pokemon = [];
 
     pokemonListResponse.data.results.forEach(indivualPokemon => pokemon.push(indivualPokemon.name))
@@ -40,34 +51,21 @@ class App extends React.Component {
     this.submitRandomPokemon()
   }
 
-  engLangIndex = (arr) => {
-    //takes in an array of objects & loops through
-    for (var i = 0; i < arr.length; i++) {
-      if (arr[i].language.name === "en") {
-        // if the language key value pair is "en" return i (the index of the arr)
-        return i;
-      }
-    }
-  }
+  submitRandomPokemon = () => {
+    const max = this.state.pokemon.length;
+    const randomIndex = Math.floor(Math.random() * Math.floor(max));
 
+    this.onSearchSubmit(this.state.pokemon[randomIndex])
+  }
 
   //not working. Requires serious thinking for eevee and poliwhirl
   buildEvolutionArray = async (pokedexResponse) => {
     const response = await Axios.get(pokedexResponse.data.evolution_chain.url)
     const evolutionChain = response.data.chain
-    const chain = [];
 
-    console.log(evolutionChain)
+    this.setState({ evolution_chain: evolutionChain })
 
-    chain.push(evolutionChain.species.name)
-
-    if (evolutionChain.hasOwnProperty("evolves_to")) {
-      chain.push(evolutionChain.evolves_to[0].species.name)
-
-      if (evolutionChain.evolves_to.hasOwnProperty("evolves_to")) {
-        chain.push(evolutionChain.evolves_to[0].evolves_to.species.name)
-      }
-    }
+    console.log(this.state.evolution_chain)
   }
 
 
@@ -75,10 +73,8 @@ class App extends React.Component {
 
   onSearchSubmit = async (term) => {
     try {
-      this.setState({ isError: false })
       const pokemonResponse = await pokeapi.get(`/pokemon/${term.toLowerCase()}/`)
       const pokedexResponse = await pokeapi.get(`/pokemon-species/${term.toLowerCase()}/`)
-
 
       if (pokemonResponse.status === 200 && pokedexResponse.status === 200) {
         const types = [];
@@ -87,6 +83,7 @@ class App extends React.Component {
 
         const abilities = [];
 
+        //horrible. need to rework this code!
         //currently get ability effect descriptions asyncronously (not avaliable on the above get request and requested individually)
         pokemonResponse.data.abilities.forEach(async (ability) => {
           //get json from api forEach ability listed for pokemon
@@ -104,9 +101,12 @@ class App extends React.Component {
 
         //not all pokemon have a habitat
         const habitat = pokedexResponse.data.habitat ? pokedexResponse.data.habitat.name : "Unknown"
+        //fetch evolution data
+        this.buildEvolutionArray(pokedexResponse)
 
         this.setState({
           fetched: true,
+          isError: false,
           image: pokemonResponse.data.sprites.front_default,
           name: pokemonResponse.data.name,
           id: pokemonResponse.data.id,
@@ -128,11 +128,14 @@ class App extends React.Component {
     }
   }
 
-  submitRandomPokemon = () => {
-    const max = this.state.pokemon.length;
-    const randomIndex = Math.floor(Math.random() * Math.floor(max));
-
-    this.onSearchSubmit(this.state.pokemon[randomIndex])
+  engLangIndex = (arr) => {
+    //takes in an array of objects & loops through
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i].language.name === "en") {
+        // if the language key value pair is "en" return i (the index of the arr)
+        return i;
+      }
+    }
   }
 
   render() {
@@ -177,6 +180,7 @@ class App extends React.Component {
                 growth={this.state.growth}
                 habitat={this.state.habitat}
                 abilities={this.state.abilities}
+                evolution_chain={this.state.evolution_chain}
               />
             }
             {

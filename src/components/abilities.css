@@ -9,6 +9,12 @@
     text-align: center;
 }
 
+.ability-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+}
+
 .ability p {
     margin-top: 28px;
 }
