@@ -18,4 +18,4 @@ To return a random pokemon, click the Pokéball accented with the media shuffle 
 
 ### Acknowledgements
 
-This project edited a Pokédex SVG authored by [Jhey Tompkins](https://jhey.dev/)
+This project edited an inline Pokédex SVG authored by [Jhey Tompkins](https://jhey.dev/)
