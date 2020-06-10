@@ -32,6 +32,6 @@
     position: absolute;
     white-space: nowrap;
     left: 50%;
-    bottom: 0;
+    bottom: 0px;
     transform: translateX(-50%);
 }

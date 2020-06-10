@@ -16,6 +16,11 @@ class Information extends React.Component {
         })
     }
 
+    componentDidUpdate() {
+        //back to first slide on update
+        this.swiper.slideTo(0);
+    }
+
     onSearchSubmit = (term) => {
         this.props.onSearchSubmit(term)
     }

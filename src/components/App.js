@@ -39,7 +39,7 @@ class App extends React.Component {
       II: 251,
       III: 386
     }
-    
+
 
     //generates a full list of all pokemon available from the api
     const pokemonListResponse = await pokeapi.get(`/pokemon/?limit=${gen.II}`)
@@ -68,29 +68,11 @@ class App extends React.Component {
         const types = [];
         pokemonResponse.data.types.forEach(type => types.push(type.type.name))
 
-        const abilities = [];
-
-        //horrible. need to rework this code!
-        //currently get ability effect descriptions asyncronously (not avaliable on the above get request and requested individually)
-        pokemonResponse.data.abilities.forEach(async (ability) => {
-          //get json from api forEach ability listed for pokemon
-          const abilityResponse = await pokeapi.get(`/ability/${ability.ability.name}/`);
-          //access the actual description or effect
-          const effectEntries = abilityResponse.data.effect_entries;
-          //save the eng language entry by looping through until language.name = eng
-          const engEffectEntry = effectEntries[this.engLangIndex(effectEntries)].short_effect
-
-          //push the ability and the effect, as an object, to an array
-          abilities.push({ name: ability.ability.name, effect: engEffectEntry })
-          //this setState is seperate because it must run asynchronously 
-          this.setState({ abilities: abilities })
-        })
-
         //not all pokemon have a habitat
         const habitat = pokedexResponse.data.habitat ? pokedexResponse.data.habitat.name : "Unknown"
-        //fetch evolution data
-        this.buildEvolutionArray(pokedexResponse)
 
+        this.buildAbilityArray(pokemonResponse)
+        this.buildEvolutionArray(pokedexResponse)
         this.setState({
           fetched: true,
           isError: false,
@@ -114,7 +96,24 @@ class App extends React.Component {
       console.log(e)
     }
   }
-  
+
+  buildAbilityArray = async (pokemonResponse) => {
+    const abilities = [];
+    
+    pokemonResponse.data.abilities.forEach(async (ability) => {
+      const abilityResponse = await pokeapi.get(`/ability/${ability.ability.name}/`);
+      //access the actual description or effect
+      const effectEntries = abilityResponse.data.effect_entries;
+      //save the eng language entry by looping through until language.name = eng
+      const engEffectEntry = effectEntries[this.engLangIndex(effectEntries)].short_effect
+
+      //push the ability and the effect, as an object, to an array
+      abilities.push({ name: ability.ability.name, effect: engEffectEntry })
+      //this setState is seperate because it must run asynchronously 
+      this.setState({ abilities: abilities })
+    })
+  }
+
   buildEvolutionArray = async (pokedexResponse) => {
     const response = await Axios.get(pokedexResponse.data.evolution_chain.url)
     const evolutionChain = response.data.chain
@@ -122,7 +121,6 @@ class App extends React.Component {
     this.setState({ evolution_chain: evolutionChain })
   }
 
-  //solving the language filter - log it.
   engLangIndex = (arr) => {
     //takes in an array of objects & loops through
     for (var i = 0; i < arr.length; i++) {
@@ -135,7 +133,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App" >
         <header className="navbar">
           <h1>Pokédex</h1>
           <div className="random-pokemon">
