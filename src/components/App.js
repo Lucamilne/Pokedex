@@ -39,6 +39,7 @@ class App extends React.Component {
       II: 251,
       III: 386
     }
+    
 
     //generates a full list of all pokemon available from the api
     const pokemonListResponse = await pokeapi.get(`/pokemon/?limit=${gen.II}`)
@@ -58,19 +59,6 @@ class App extends React.Component {
     this.onSearchSubmit(this.state.pokemon[randomIndex])
   }
 
-  //not working. Requires serious thinking for eevee and poliwhirl
-  buildEvolutionArray = async (pokedexResponse) => {
-    const response = await Axios.get(pokedexResponse.data.evolution_chain.url)
-    const evolutionChain = response.data.chain
-
-    this.setState({ evolution_chain: evolutionChain })
-
-    console.log(this.state.evolution_chain)
-  }
-
-
-  //solving the language filter - log it.
-
   onSearchSubmit = async (term) => {
     try {
       const pokemonResponse = await pokeapi.get(`/pokemon/${term.toLowerCase()}/`)
@@ -79,7 +67,6 @@ class App extends React.Component {
       if (pokemonResponse.status === 200 && pokedexResponse.status === 200) {
         const types = [];
         pokemonResponse.data.types.forEach(type => types.push(type.type.name))
-
 
         const abilities = [];
 
@@ -127,7 +114,15 @@ class App extends React.Component {
       console.log(e)
     }
   }
+  
+  buildEvolutionArray = async (pokedexResponse) => {
+    const response = await Axios.get(pokedexResponse.data.evolution_chain.url)
+    const evolutionChain = response.data.chain
 
+    this.setState({ evolution_chain: evolutionChain })
+  }
+
+  //solving the language filter - log it.
   engLangIndex = (arr) => {
     //takes in an array of objects & loops through
     for (var i = 0; i < arr.length; i++) {
@@ -166,6 +161,7 @@ class App extends React.Component {
               !this.state.isError && this.state.fetched &&
               <Information
                 fetched={this.state.fetched}
+                onSearchSubmit={this.onSearchSubmit}
                 name={this.state.name}
                 id={this.state.id}
                 image={this.state.image}

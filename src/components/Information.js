@@ -16,6 +16,10 @@ class Information extends React.Component {
         })
     }
 
+    onSearchSubmit = (term) => {
+        this.props.onSearchSubmit(term)
+    }
+
     render() {
         return (
             <div className="swiper-container">
@@ -69,6 +73,7 @@ class Information extends React.Component {
                         <h3>Evolutions</h3>
                         <div className="evolution-container">
                             <Evolutions
+                                onSearchSubmit={this.props.onSearchSubmit}
                                 evolution_chain={this.props.evolution_chain}
                                 name={this.props.name}
                             />

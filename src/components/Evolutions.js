@@ -14,13 +14,16 @@ class Evolutions extends React.Component {
         }
     }
 
+
     evolvesIntoList = (basePokemon) => {
         const baseImgURL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
 
         const evolvesIntoList = basePokemon.evolves_to.map(evolvedPokemon => {
             return (
                 <div key={evolvedPokemon.species.name} className="evolution-row">
-                    <div className="thumbnail">
+                    <div className="thumbnail nes-pointer"
+                        onClick={() => this.props.onSearchSubmit(basePokemon.species.name)}
+                    >
                         <img
                             alt={basePokemon.species.name}
                             src={`${baseImgURL}${this.idFromPokemon(basePokemon)}.png`}>
@@ -28,7 +31,9 @@ class Evolutions extends React.Component {
                         <span className="evolution-row__label">{basePokemon.species.name}</span>
                     </div>
                     <div className="arrow"></div>
-                    <div className="thumbnail">
+                    <div className="thumbnail nes-pointer"
+                        onClick={() => this.props.onSearchSubmit(evolvedPokemon.species.name)}
+                    >
                         <img
                             alt={evolvedPokemon.species.name}
                             src={`${baseImgURL}${this.idFromPokemon(evolvedPokemon)}.png`}>
@@ -66,8 +71,8 @@ class Evolutions extends React.Component {
                 }
                 {this.state.evoDataFetched && basePokemon.evolves_to.length > 0 && basePokemon.evolves_to[0].evolves_to.length > 0 &&
                     <div>
-                            {this.evolvesIntoList(basePokemon)}
-                            {this.evolvesIntoList(basePokemon.evolves_to[0])}
+                        {this.evolvesIntoList(basePokemon)}
+                        {this.evolvesIntoList(basePokemon.evolves_to[0])}
                     </div>
                     //if the pokemon evolves twice
                 }
