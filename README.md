@@ -1,5 +1,5 @@
 # Pokédex 
-##An enclyopedia of Pokémon with live search
+**An enclyopedia of Pokémon with live search**
 
 Built with React.js, swiper.js and the [PokeAPI](https://pokeapi.co/)
 
