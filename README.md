@@ -1,7 +1,7 @@
 # Pokédex 
 **An enclyopedia of Pokémon with live search**
 
-Built with React.js, swiper.js and the [PokeAPI](https://pokeapi.co/)
+Built with React.js, swiper.js, [NES.css](https://nostalgic-css.github.io/NES.css/) and the [PokeAPI](https://pokeapi.co/)
 
 To see more information related to the focal Pokémon, try swiping the information card.
 
