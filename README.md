@@ -12,3 +12,7 @@ The data presented for each Pokémon is divided up into three swipable sections:
 1. Evolution chain
 
 To return a random pokemon, click the Pokéball accented with the media shuffle icon.
+
+###Acknowledgements
+
+Pokédex SVG by [Jhey Tompkins](https://jhey.dev/)
