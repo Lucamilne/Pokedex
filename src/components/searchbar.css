@@ -17,12 +17,19 @@ label {
   display: none;
 }
 
+/* delete this if bugs are introduced */
+.field {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
 .field input {
   background-color: transparent;
   font-size: 4.5px;
-  position: relative;
+  /* position: relative;
   top: -9px;
-  height: 15px;
+  height: 15px; */
   text-transform: uppercase;
   text-align: center;
   width: 52px;

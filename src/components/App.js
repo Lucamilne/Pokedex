@@ -192,7 +192,6 @@ class App extends React.Component {
           </section>
         </main>
         <footer>
-          {/* <h1 title="Pokedex by Jh3y">@Jh3y</h1> */}
           <div className="contact-links">
             <a href="mailto:lucamilne@googlemail.com" title="Email">
               <i className="nes-icon gmail is-medium"></i>
