@@ -1,9 +1,3 @@
-input[type=text] {   
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;  
-}
-
 input,
 input:focus {
   border: none;
