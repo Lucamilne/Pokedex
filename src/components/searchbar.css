@@ -21,18 +21,20 @@ form {
   display: flex;
   position: absolute;
   align-items: center;
-  height: 100%;
-  width: 100%;
+  top: 22.5%;
+  left: 18.5%;
+  width: 63%;
+  height: 18%;
 }
 
 input {
   background-color: transparent;
-  font-size: 4px;
-  line-height: 4px;
   text-transform: uppercase;
   text-align: center;
-  width: 52px;
   color: #eee;
+  width: 100%;
+  font-size: 2.5vmin;
+  line-height: 2.5vmin;
 }
 
 option {

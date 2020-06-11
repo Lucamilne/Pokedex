@@ -19,7 +19,7 @@ class SearchBar extends React.Component {
 
     render() {
         return (
-            <form xmlns="http://www.w3.org/1999/xhtml" onSubmit={this.onFormSubmit}>
+            <form onSubmit={this.onFormSubmit}>
                     <label>Pokemon Search</label>
                     <input
                         spellCheck="false"

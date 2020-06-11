@@ -187,12 +187,10 @@ class Pokedex extends React.Component {
                                         <circle cx="97.6042" cy="159.7773" r=".7937" />
                                     </g>
                                 </g>
-                                <foreignObject transform="translate(9, 21)" width="53" height="19">
-                                    <SearchBar
+                            </svg>
+                            <SearchBar
                                         pokemonSubmit={this.pokemonSubmit}
                                         pokemon={this.props.pokemon} />
-                                </foreignObject>
-                            </svg>
                         </div>
                         <div className="pokedex__flip-outer-container">
                             <svg className="pokedex__flip--outer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.1601 96.4991">
