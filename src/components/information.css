@@ -3,12 +3,19 @@
   height: 100%;
   overflow: hidden;
 }
-
 .swiper-slide {
   height: 100%;
   width: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+}
+.swiper-button-next, .swiper-button-prev {
+  color: #fff;
+  top: 20px;
+  cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAzElEQVRYR+2X0Q6AIAhF5f8/2jYXZkwEjNSVvVUjDpcrGgT7FUkI2D9xRfQETwNIiWO85wfINfQUEyxBG2ArsLwC0jioGt5zFcwF4OYDPi/mBYKm4t0U8ATgRm3ThFoAqkhNgWkA0jJLvaOVSs7j3qMnSgXWBMiWPXe94QqMBMBc1VZIvaTu5u5pQewq0EqNZvIEMCmxAawK0DNkay9QmfFNAJUXfgGgUkLaE7j/h8fnASkxHTz0DGIBMCnBeeM7AArpUd3mz2x3C7wADglA8BcWMZhZAAAAAElFTkSuQmCC) 14 0, pointer;
+}
+.swiper-button-next::after, .swiper-button-prev::after {
+  font-size: 20px;
 }
 .information-card {
   position: relative;
@@ -24,7 +31,6 @@
   width: 100%;
   background-color: var(--pokedex-red);
   color: #fff;
-  text-align: center;
   position: absolute;
   top: 0;
   left: 0;
@@ -33,6 +39,7 @@
 .bar h3 {
   margin: 0;
   line-height: 32px;
+  text-align: center;
 }
 hr {
   border: 2px solid #222;

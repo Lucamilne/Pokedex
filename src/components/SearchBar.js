@@ -19,8 +19,7 @@ class SearchBar extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.onFormSubmit}>
-                <div className="field" style={{position: "fixed"}}>
+            <form onSubmit={this.onFormSubmit} style={{position: "fixed"}}>
                     <label>Pokemon Search</label>
                     <input
                         spellCheck="false"
@@ -31,7 +30,6 @@ class SearchBar extends React.Component {
                         list="pokemon"
                         ref={this.inputFocusRef}
                     />
-                </div>
             </form>
         )
     }

@@ -12,7 +12,11 @@ import Evolutions from "./Evolutions"
 class Information extends React.Component {
     componentDidMount() {
         this.swiper = new Swiper(".swiper-container", {
-            effect: 'flip'
+            spaceBetween: 12,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            }
         })
     }
 
@@ -85,6 +89,8 @@ class Information extends React.Component {
                         </div>
                     </div>
                 </div>
+                <div className="swiper-button-next nes-pointer"></div>
+                <div className="swiper-button-prev nes-pointer"></div>
             </div>
         )
     }
