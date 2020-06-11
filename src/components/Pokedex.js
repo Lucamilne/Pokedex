@@ -127,7 +127,7 @@ class Pokedex extends React.Component {
                                     <path d="M-277.0738 232.737c-3.5989 0-6.4962 2.8968-6.4962 6.4957v98.133c0 3.5989 2.8973 6.4963 6.4962 6.4963h72.8788V232.737h-44.7084zM-127.2158 107.0401c-3.5988 0-6.4962 2.8969-6.4962 6.4957v98.133c0 3.599 2.8974 6.4963 6.4962 6.4963h72.8788v-111.125h-44.7084z" fill="none" />
                                     <g className="pokedex__text-screen">
                                         <path strokeWidth="1.235" strokeLinecap="round" strokeLinejoin="round" d="M50.6342 105.4055h52.9167v18.9177H50.6342z" />
-                                        <foreignObject x="51" y="106" width="52" height="18" style={{position: "relative"}}>
+                                        <foreignObject transform="translate(51, 106)" x="51" y="106" width="52" height="18" style={{position: "relative"}}>
                                             <SearchBar 
                                             pokemonSubmit={ this.pokemonSubmit }
                                             pokemon={ this.props.pokemon }/>
