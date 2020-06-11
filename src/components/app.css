@@ -67,8 +67,8 @@ footer,
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 100%;
 }
 
@@ -85,11 +85,11 @@ body {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 #app__container {
@@ -103,14 +103,14 @@ footer {
   text-transform: uppercase;
   padding: 0 32px;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 header {
   -webkit-box-shadow: inset 0 -8px var(--pokedex-dark-red),
     inset 0 -16px var(--pokedex-inner-red);
-          box-shadow: inset 0 -8px var(--pokedex-dark-red),
+  box-shadow: inset 0 -8px var(--pokedex-dark-red),
     inset 0 -16px var(--pokedex-inner-red);
   border-bottom: 8px solid black;
 }
@@ -118,12 +118,12 @@ header {
 footer {
   -webkit-box-shadow: inset 0 8px var(--pokedex-dark-red),
     inset 0 16px var(--pokedex-inner-red);
-          box-shadow: inset 0 8px var(--pokedex-dark-red),
+  box-shadow: inset 0 8px var(--pokedex-dark-red),
     inset 0 16px var(--pokedex-inner-red);
   border-top: 8px solid black;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 header h1,
@@ -132,11 +132,18 @@ footer h1 {
   color: #fff;
   text-shadow: 4px 0 0 #000, 0 -4px 0 #000, 0 4px 0 #000, -4px 0 0 #000;
 }
-.capitalize, span {
+.capitalize,
+span {
   text-transform: capitalize;
 }
 
-h1, h2, h3 {
+button:focus {
+  outline: 0;
+}
+
+h1,
+h2,
+h3 {
   text-transform: capitalize;
 }
 
@@ -158,20 +165,20 @@ h1, h2, h3 {
   transition: transform 150ms ease;
   transition: transform 150ms ease, -webkit-transform 150ms ease;
   -webkit-transform: scale(0.85);
-      -ms-transform: scale(0.85);
-          transform: scale(0.85);
+  -ms-transform: scale(0.85);
+  transform: scale(0.85);
 }
 
 .random-pokemon:active {
   -webkit-transform: scale(0.75);
-      -ms-transform: scale(0.75);
-          transform: scale(0.75);
+  -ms-transform: scale(0.75);
+  transform: scale(0.75);
 }
 
 .section__container {
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   width: 100%;
 }
 
@@ -193,8 +200,8 @@ h1, h2, h3 {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 @media screen and (min-width: 768px) {
@@ -203,8 +210,8 @@ h1, h2, h3 {
   }
   footer {
     -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
   }
 }
 
@@ -212,7 +219,8 @@ h1, h2, h3 {
   #app__container {
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 1fr var(--padding) 1fr var(--padding) 1fr var(--padding) 1fr var(--padding) 1fr;
+    -ms-grid-columns: 1fr var(--padding) 1fr var(--padding) 1fr var(--padding)
+      1fr var(--padding) 1fr;
     grid-template-columns: repeat(5, 1fr);
     -ms-grid-rows: 1fr;
     grid-template-rows: 1fr;
