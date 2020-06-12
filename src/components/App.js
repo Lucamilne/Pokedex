@@ -60,6 +60,8 @@ class App extends React.Component {
   }
 
   onSearchSubmit = async (term) => {
+    this.setState({ fetched: false });
+
     try {
       const pokemonResponse = await pokeapi.get(`/pokemon/${term.toLowerCase()}/`)
       const pokedexResponse = await pokeapi.get(`/pokemon-species/${term.toLowerCase()}/`)

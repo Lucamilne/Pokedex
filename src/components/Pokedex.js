@@ -5,7 +5,7 @@ import SearchBar from "./SearchBar"
 
 class Pokedex extends React.Component {
     state = {
-        isOpen: true,
+        isOpen: true
     };
 
     openPokedex = () => {
