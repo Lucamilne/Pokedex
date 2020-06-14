@@ -1,7 +1,7 @@
 # Pokédex 
 ## 2An enclyopedia of Pokémon with live search
 
-![App preview](/Hero.png)
+![App preview](/public/Hero.png)
 
 Built with React.js, swiper.js and the [PokeAPI](https://pokeapi.co/)
 
