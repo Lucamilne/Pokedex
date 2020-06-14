@@ -37,12 +37,12 @@ class App extends React.Component {
     let gen = {
       I: 151,
       II: 251,
-      III: 386
+      III: 385
     }
 
 
     //generates a full list of all pokemon available from the api
-    const pokemonListResponse = await pokeapi.get(`/pokemon/?limit=${gen.II}`)
+    const pokemonListResponse = await pokeapi.get(`/pokemon/?limit=${gen.III}`)
     const pokemon = [];
 
     pokemonListResponse.data.results.forEach(indivualPokemon => pokemon.push(indivualPokemon.name))
