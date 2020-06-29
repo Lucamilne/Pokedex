@@ -1,7 +1,7 @@
 # Pokédex 
 ## 2An enclyopedia of Pokémon with live search
 
-![App preview](/Hero.png)
+![App preview](/public/Hero.png)
 
 Built with React.js, swiper.js and the [PokeAPI](https://pokeapi.co/)
 
@@ -15,7 +15,7 @@ The data presented for each Pokémon is divided up into three swipable sections:
 
 To return a random pokemon, click the Pokéball accented with the media shuffle icon.
 
-###Acknowledgements
+## Acknowledgements
 
 Pokédex graphic was made with custom edits to an SVG authored by [Jhey Tompkins](https://jhey.dev/)
 
