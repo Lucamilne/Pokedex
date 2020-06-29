@@ -13,7 +13,6 @@ class App extends React.Component {
     return {
       fetched: false,
       isError: false,
-      pokemon: [],
       name: "",
       id: null,
       image: "",
@@ -37,34 +36,20 @@ class App extends React.Component {
     let gen = {
       I: 151,
       II: 251,
-      III: 385
+      III: 384
     }
 
+    const randomID = Math.floor(Math.random() * Math.floor(gen.III));
 
-    //generates a full list of all pokemon available from the api
-    const pokemonListResponse = await pokeapi.get(`/pokemon/?limit=${gen.III}`)
-    const pokemon = [];
-
-    pokemonListResponse.data.results.forEach(indivualPokemon => pokemon.push(indivualPokemon.name))
-
-    this.setState({ pokemon: pokemon })
-
-    this.submitRandomPokemon()
-  }
-
-  submitRandomPokemon = () => {
-    const max = this.state.pokemon.length;
-    const randomIndex = Math.floor(Math.random() * Math.floor(max));
-
-    this.onSearchSubmit(this.state.pokemon[randomIndex])
+    this.onSearchSubmit(randomID)
   }
 
   onSearchSubmit = async (term) => {
     this.setState({ fetched: false });
 
     try {
-      const pokemonResponse = await pokeapi.get(`/pokemon/${term.toLowerCase()}/`)
-      const pokedexResponse = await pokeapi.get(`/pokemon-species/${term.toLowerCase()}/`)
+      const pokemonResponse = await pokeapi.get(`/pokemon/${term}/`)
+      const pokedexResponse = await pokeapi.get(`/pokemon-species/${term}/`)
 
       if (pokemonResponse.status === 200 && pokedexResponse.status === 200) {
         const types = [];

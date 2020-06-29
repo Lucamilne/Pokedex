@@ -11,7 +11,9 @@ class SearchBar extends React.Component {
     onFormSubmit = (event) => {
         event.preventDefault();
 
-        this.props.pokemonSubmit(this.state.term)
+        const lowerCaseTerm = this.state.term.toLowerCase()
+
+        this.props.pokemonSubmit(lowerCaseTerm)
         //prevent mobile keyboard from remaining open
         this.inputFocusRef.current.blur()
         this.setState({ term: "" })
