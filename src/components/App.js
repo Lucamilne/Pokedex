@@ -9,6 +9,12 @@ import Axios from "axios";
 class App extends React.Component {
   state = this.intialState;
 
+  gen = {
+    I: 151,
+    II: 251,
+    III: 384
+  }
+
   get intialState() {
     return {
       fetched: false,
@@ -32,20 +38,21 @@ class App extends React.Component {
     }
   }
 
-  async componentDidMount() {
-    let gen = {
-      I: 151,
-      II: 251,
-      III: 384
-    }
+  componentDidMount() {
+    this.submitRandomPokemon()
+  }
 
-    const randomID = Math.floor(Math.random() * Math.floor(gen.III));
+  submitRandomPokemon = () => {
+    const randomID = Math.floor(Math.random() * Math.floor(this.gen.II));
 
     this.onSearchSubmit(randomID)
   }
 
   onSearchSubmit = async (term) => {
-    this.setState({ fetched: false });
+    this.setState({ 
+      fetched: false,
+      image: ""
+    });
 
     try {
       const pokemonResponse = await pokeapi.get(`/pokemon/${term}/`)
