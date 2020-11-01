@@ -116,6 +116,8 @@ class App extends React.Component {
   }
 
   engLangIndex = (arr) => {
+
+    console.log(arr)
     //takes in an array of objects & loops through
     for (var i = 0; i < arr.length; i++) {
       if (arr[i].language.name === "en") {
