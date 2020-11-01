@@ -1,8 +1,6 @@
 import React from "react";
 import Swiper from "swiper"
 import "./information.css";
-
-
 import TypeList from "./TypeList"
 import Statistics from "./Statistics"
 import Description from "./Description"

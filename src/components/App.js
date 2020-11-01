@@ -65,6 +65,7 @@ class App extends React.Component {
         //not all pokemon have a habitat
         const habitat = pokedexResponse.data.habitat ? pokedexResponse.data.habitat.name : "Unknown"
 
+        this.buildAbilityArray(pokemonResponse.data.abilities)
         this.buildEvolutionArray(pokedexResponse)
         this.setState({
           fetched: true,
@@ -81,8 +82,7 @@ class App extends React.Component {
           colour: pokedexResponse.data.color.name,
           shape: pokedexResponse.data.shape.name,
           growth: pokedexResponse.data.growth_rate.name,
-          habitat: habitat,
-          abilities: this.buildAbilityArray(pokemonResponse.data.abilities)
+          habitat: habitat
         })
       }
     } catch (e) {
@@ -100,16 +100,17 @@ class App extends React.Component {
       promises.push(promise)
     })
 
-    Promise.all(promises).then(values => values.forEach(value => {
-      //access the actual description or effect
-      const effectEntries = value.data.effect_entries;
-      //save the eng language entry by looping through until language.name = eng
-      const engEffectEntry = effectEntries[this.engLangIndex(effectEntries)].short_effect
-      //push the ability and the effect, as an object, to an array
-      abilityArray.push({ name: value.data.name, effect: engEffectEntry })
-    }))
-
-    return abilityArray;
+    Promise.all(promises).then(values => {
+      values.forEach(value => {
+        //access the actual description or effect
+        const effectEntries = value.data.effect_entries;
+        //save the eng language entry by looping through until language.name = eng
+        const engEffectEntry = effectEntries[this.engLangIndex(effectEntries)].short_effect
+        //push the ability and the effect, as an object, to an array
+        abilityArray.push({ name: value.data.name, effect: engEffectEntry })
+      });
+      this.setState({ abilities: abilityArray })
+    })
   }
 
   buildEvolutionArray = async (pokedexResponse) => {
