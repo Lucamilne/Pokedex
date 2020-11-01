@@ -49,7 +49,7 @@ class App extends React.Component {
   }
 
   onSearchSubmit = async (term) => {
-    this.setState({ 
+    this.setState({
       fetched: false,
       image: ""
     });
@@ -65,7 +65,6 @@ class App extends React.Component {
         //not all pokemon have a habitat
         const habitat = pokedexResponse.data.habitat ? pokedexResponse.data.habitat.name : "Unknown"
 
-        this.buildAbilityArray(pokemonResponse)
         this.buildEvolutionArray(pokedexResponse)
         this.setState({
           fetched: true,
@@ -82,7 +81,8 @@ class App extends React.Component {
           colour: pokedexResponse.data.color.name,
           shape: pokedexResponse.data.shape.name,
           growth: pokedexResponse.data.growth_rate.name,
-          habitat: habitat
+          habitat: habitat,
+          abilities: this.buildAbilityArray(pokemonResponse.data.abilities)
         })
       }
     } catch (e) {
@@ -91,21 +91,25 @@ class App extends React.Component {
     }
   }
 
-  buildAbilityArray = async (pokemonResponse) => {
-    const abilities = [];
-    
-    pokemonResponse.data.abilities.forEach(async (ability) => {
-      const abilityResponse = await pokeapi.get(`/ability/${ability.ability.name}/`);
+  buildAbilityArray = (abilities) => {
+    const abilityArray = [];
+    const promises = []
+
+    abilities.forEach((ability) => {
+      let promise = pokeapi.get(`/ability/${ability.ability.name}/`);
+      promises.push(promise)
+    })
+
+    Promise.all(promises).then(values => values.forEach(value => {
       //access the actual description or effect
-      const effectEntries = abilityResponse.data.effect_entries;
+      const effectEntries = value.data.effect_entries;
       //save the eng language entry by looping through until language.name = eng
       const engEffectEntry = effectEntries[this.engLangIndex(effectEntries)].short_effect
-
       //push the ability and the effect, as an object, to an array
-      abilities.push({ name: ability.ability.name, effect: engEffectEntry })
-      //this setState is seperate because it must run asynchronously 
-      this.setState({ abilities: abilities })
-    })
+      abilityArray.push({ name: value.data.name, effect: engEffectEntry })
+    }))
+
+    return abilityArray;
   }
 
   buildEvolutionArray = async (pokedexResponse) => {
@@ -116,8 +120,6 @@ class App extends React.Component {
   }
 
   engLangIndex = (arr) => {
-
-    console.log(arr)
     //takes in an array of objects & loops through
     for (var i = 0; i < arr.length; i++) {
       if (arr[i].language.name === "en") {
