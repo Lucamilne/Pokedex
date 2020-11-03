@@ -33,7 +33,7 @@ class Information extends React.Component {
                 <div className="swiper-wrapper">
                     <div className="nes-container information-card swiper-slide">
                         <div className="bar">
-                            <h3>Information</h3>
+                            <h3>Swipe!</h3>
                         </div>
                         <h3 className="pokemon-title">
                             <span>{this.props.name}</span>
@@ -56,7 +56,7 @@ class Information extends React.Component {
                     </div>
                     <div className="nes-container information-card swiper-slide">
                         <div className="bar">
-                            <h3>Information</h3>
+                            <h3>Swipe!</h3>
                         </div>
                         <h3>Profile</h3>
                         <ul className="profile">
@@ -75,7 +75,7 @@ class Information extends React.Component {
                     </div>
                     <div className="nes-container information-card swiper-slide">
                         <div className="bar">
-                            <h3>Information</h3>
+                            <h3>Swipe!</h3>
                         </div>
                         <h3>Evolutions</h3>
                         <div className="evolution-container">

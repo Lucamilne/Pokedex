@@ -136,10 +136,10 @@ class App extends React.Component {
         <header className="navbar">
           <h1>Pokédex</h1>
           <div className="random-pokemon">
-            <i className="nes-pokeball is-small nes-pointer"
+            <button className="nes-pokeball nes-pointer"
               title="Random Pokémon"
               onClick={this.submitRandomPokemon}
-            ></i>
+            ></button>
             <span role="img" aria-label="Random Pokemon">&#128256;</span>
           </div>
 

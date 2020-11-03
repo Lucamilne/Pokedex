@@ -95,7 +95,9 @@ body {
 #app__container {
   padding: var(--padding);
 }
-
+button {
+  all: unset;
+}
 header,
 footer {
   height: 100px;
