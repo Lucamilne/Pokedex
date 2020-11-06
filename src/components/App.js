@@ -12,7 +12,10 @@ class App extends React.Component {
   gen = {
     I: 151,
     II: 251,
-    III: 384
+    III: 386,
+    IV: 493,
+    V: 649,
+    VI: 721
   }
 
   get intialState() {
@@ -43,7 +46,7 @@ class App extends React.Component {
   }
 
   submitRandomPokemon = () => {
-    const randomID = Math.floor(Math.random() * Math.floor(this.gen.II));
+    const randomID = Math.floor(Math.random() * Math.floor(this.gen.VI));
 
     this.onSearchSubmit(randomID)
   }
